@@ -88,6 +88,12 @@ if [[ -z "$ZOOKERPER_ACTIVE" ]]; then
           done
         fi
       fi
+      if [[ -z "$ZOOKEEPER_SECURE_PORT" ]]; then
+        sed -i s/secureClientPort=/\\\#secureClientPort=/g $ZOOKEEPER_HOME/conf/zoo.cfg
+      fi
+      if [[ -z "$ZOOKEEPER_PORT" ]]; then
+        sed -i s/clientPort=/\\\#clientPort=/g $ZOOKEEPER_HOME/conf/zoo.cfg
+      fi
       if ! [[ -z "$ZOOKEEPER_PORT_ADDRESS" ]]; then
         echo "clientPortAddress=$ZOOKEEPER_PORT_ADDRESS"  >>  $ZOOKEEPER_HOME/conf/zoo.cfg
       fi
@@ -148,7 +154,9 @@ if [[ -z "$ZOOKERPER_ACTIVE" ]]; then
     fi
     touch /root/.zookeeper_configured
   fi
-
+  if [[ -z "$(ls $ZOOKEEPER_DATA_FOLDER/*)" ]]; then
+    zkServer-initialize.sh
+  fi
   zkEnv.sh && zkServer.sh start
 
   CMD=${1:-""}
