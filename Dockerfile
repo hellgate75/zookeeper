@@ -9,7 +9,7 @@ ENV ZOOKEEPER_HOME=/usr/local/zookeeper \
     ZOOKEEPER_DATA_FOLDER=/var/lib/zookeeper \
     ZOOKEEPER_LOGS_FOLDER=/var/lib/zk-transaction-logs \
     ZOOKEEPER_SSL_FOLDER=/var/lib/zookeeper-ssl \
-    ZOOKEEPER_RELEASE=3.5.3-beta \
+    ZOOKEEPER_RELEASE=3.5.2-alpha \
     ZOOKEEPER_CONFIGURATION_URL="" \
     ZOOKEEPER_PORT_ADDRESS="" \
     ZOOKEEPER_PORT=2181 \
@@ -62,6 +62,7 @@ ENV ZOOKEEPER_HOME=/usr/local/zookeeper \
 USER root
 
 #support for Hadoop 2.6.0
+RUN echo "File : http://www-eu.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_RELEASE/zookeeper-$ZOOKEEPER_RELEASE.tar.gz"
 RUN curl -s http://www-eu.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_RELEASE/zookeeper-$ZOOKEEPER_RELEASE.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s zookeeper-$ZOOKEEPER_RELEASE zookeeper
 RUN mkdir -p $ZOOKEEPER_DATA_FOLDER && mkdir -p ZOOKEEPER_LOGS_FOLDER && mkdir -p $ZOOKEEPER_SSL_FOLDER && mkdir -p $ZOOKEEPER_HOME/conf && mkdir -p $ZOOKEEPER_HOME/logs

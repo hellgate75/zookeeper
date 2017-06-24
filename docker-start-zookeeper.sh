@@ -128,13 +128,13 @@ if [[ -z "$ZOOKERPER_ACTIVE" ]]; then
         export ZK_UNSAFE_QUORUN_LIST_ALL_IPS="false"
       fi
       echo "quorumListenOnAllIPs=$ZK_UNSAFE_QUORUN_LIST_ALL_IPS"  >>  $ZOOKEEPER_HOME/conf/zoo.cfg
-      if ![[ -a "$ZK_PERFORMANCE_NUM_SELECTOR_THREADS" ]]; then
+      if ! [[ -a "$ZK_PERFORMANCE_NUM_SELECTOR_THREADS" ]]; then
         echo "zookeeper.nio.numSelectorThreads=$ZK_PERFORMANCE_NUM_SELECTOR_THREADS"  >>  $ZOOKEEPER_HOME/conf/zoo.cfg
       fi
-      if ![[ -a "$ZK_PERFORMANCE_NUM_WORKER_THREADS" ]]; then
+      if ! [[ -a "$ZK_PERFORMANCE_NUM_WORKER_THREADS" ]]; then
         echo "zookeeper.nio.numWorkerThreads=$ZK_PERFORMANCE_NUM_WORKER_THREADS"  >>  $ZOOKEEPER_HOME/conf/zoo.cfg
       fi
-      if ![[ -a "$ZK_PERFORMANCE_NUM_COMMIT_WORKER_THREADS" ]]; then
+      if ! [[ -a "$ZK_PERFORMANCE_NUM_COMMIT_WORKER_THREADS" ]]; then
         echo "zookeeper.commitProcessor.numWorkerThreads=$ZK_PERFORMANCE_NUM_COMMIT_WORKER_THREADS"  >>  $ZOOKEEPER_HOME/conf/zoo.cfg
       fi
       echo "znode.container.checkIntervalMs=$ZK_TUNING_CHECK_INTERVAL_MILLIS"  >>  $ZOOKEEPER_HOME/conf/zoo.cfg
