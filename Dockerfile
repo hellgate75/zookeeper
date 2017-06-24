@@ -79,6 +79,6 @@ WORKDIR /usr/local/zookeeper
 
 EXPOSE 2181 2182
 
-VOLUME ["/var/lib/zookeeper", "/var/lib/zk-transaction-logs"]
+VOLUME ["/var/lib/zookeeper", "/var/lib/zk-transaction-logs", "/var/lib/zookeeper-ssl"]
 
 ENTRYPOINT ["docker-start-zookeeper"]
