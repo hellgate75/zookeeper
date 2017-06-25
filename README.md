@@ -45,7 +45,11 @@ Ports:
 
 DEFAULT ports :
 
-2181 2182
+8080 2181 2182
+
+* `8080`: Commands REST interface
+* `2181`: Default (preferred) no-SSL port
+* `2182`: Default (preferred) SSL port
 
 
 ### Docker Environment Variable ###
@@ -59,8 +63,8 @@ For more information about values : [Apache™ Zookeeper Configuration](http://z
 Here Apache™ Zookeeper single mode container environment variables :
 
 * `ZOOKEEPER_PORT_ADDRESS` : The address (ipv4, ipv6 or hostname) to listen for client connections; that is, the address that clients attempt to connect to. This is optional, by default we bind in such a way that any connection to the clientPort for any address/interface/nic on the server will be accepted. Leave empty to disable (default : "" - ignored)
-* `ZOOKEEPER_PORT` :  The port to listen for client connections; that is, the port that clients attempt to connect to. Leave empty to disable (default : "")
-* `ZOOKEEPER_SECURE_PORT` : The port to listen on for secure client connections using SSL. clientPort specifies the port for plaintext connections while secureClientPort specifies the port for SSL connections. Specifying both enables mixed-mode while omitting either will disable that mode. Note that SSL feature will be enabled when user plugs-in zookeeper.serverCnxnFactory, zookeeper.clientCnxnSocket as Netty (default : 2182)
+* `ZOOKEEPER_PORT` :  The port to listen for client connections; that is, the port that clients attempt to connect to. Make empty to disable (default : 2181)
+* `ZOOKEEPER_SECURE_PORT` : The port to listen on for secure client connections using SSL. clientPort specifies the port for plaintext connections while secureClientPort specifies the port for SSL connections. Specifying both enables mixed-mode while omitting either will disable that mode. Note that SSL feature will be enabled when user plugs-in zookeeper.serverCnxnFactory, zookeeper.clientCnxnSocket as Netty Leave empty to disable (default : "" - preferred 2182)
 * `ZOOKEEPER_TICK_TIME` : The length of a single tick, which is the basic time unit used by ZooKeeper, as measured in milliseconds. It is used to regulate heartbeats, and timeouts. For example, the minimum session timeout will be two ticks (default : 2000)
 * `ZOOKEEPER_OUTSTANDING_LIMIT` : Clients can submit requests faster than ZooKeeper can process them, especially if there are a lot of clients. To prevent ZooKeeper from running out of memory due to queued requests, ZooKeeper will throttle clients so that there is no more than globalOutstandingLimit outstanding requests in the system (default : 1000)
 * `ZOOKEEPER_PREALLOC_SIZE_KBS` : To avoid seeks ZooKeeper allocates space in the transaction log file in blocks of preAllocSize kilobytes. The default block size is 64M. One reason for changing the size of the blocks is to reduce the block size if snapshots are taken more often. (Also, see ZOOKEEPER_SNAP_COUNT) (default : 65536)
