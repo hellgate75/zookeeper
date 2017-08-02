@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUNNING="$($ZK_HOME/bin/zkServer.sh status|grep 'Mode:')"
+RUNNING="$(ps -eaf | grep java | grep zookeeper)"
 
 if ! [[ -z "$RUNNING" ]]; then
   cd /usr/lib/zookeeper
