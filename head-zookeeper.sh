@@ -1,5 +1,5 @@
 #!/bin/bash
-FLAG_WIREMOCK="$(status-wiremock-server)"
+FLAG_ZOOKEEPER="$(status-zookeeper)"
 
 netstat -anp
 
@@ -22,14 +22,9 @@ netstat -anp
 && echo '                                                                        |  |' \
 && echo '' \
 && echo "" \
-&& echo "WireMock Server ($WM_VERSION)" \
+&& echo "Zookeeper (v. $ZOOKEEPER_RELEASE)" \
 && echo ""
-if [[ "yes" == "$WM_USE_SSL" ]]; then
-  echo "WireMock Server Console: http://0.0.0.0:$WM_HTTPS_PORT"
-else
-  echo "WireMock Server Console: http://0.0.0.0:$WM_HTTP_PORT"
-fi
 echo "" \
-&& echo "Server status : $FLAG_WIREMOCK" \
+&& echo "Zookeeper status : $FLAG_ZOOKEEPER" \
 && echo "" \
 && echo ""
