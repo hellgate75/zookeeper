@@ -1,4 +1,6 @@
-# Apache Zookeeper Docker image
+<p align="center"><img src="https://github.com/hellgate75/zookeeper/raw/master/images/zookeeper-logo.png" width="241"  height="110" /></p>
+
+# Apache™ ZooKeeper Docker image
 
 
 Docker Image for Apache™ Zookeper Single/Replica Node
