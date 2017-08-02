@@ -56,6 +56,7 @@ DEFAULT ports :
 
 Here Zookeeper configuration acceleration variables :
 * `ZOOKEEPER_CONFIGURATION_URL` : Url to zoo.cfg configuration file to be placed. Other single/replica node variables will be ignored.
+* `ZOOKEEPER_CONFIGURATION_SCRIPT_URL` : Url to bash script file used for Apache™ Zookeper system variables configuration.
 
 For more information about values : [Apache™ Zookeeper Configuration](http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_configuration)
 

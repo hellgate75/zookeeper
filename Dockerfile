@@ -1,6 +1,6 @@
-FROM hellgate75/ubuntu-base:16.04
+FROM ubuntu:16.04
 
-MAINTAINER Fabrizio Torelli (hellgate75@gmail.com)
+MAINTAINER Fabrizio Torelli <hellgate75@gmail.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG RUNLEVEL=1
@@ -9,9 +9,10 @@ ENV ZOOKEEPER_HOME=/usr/local/zookeeper \
     ZOOKEEPER_PREFIX=/usr/local/zookeeper \
     ZOO_LOG_DIR=/usr/local/zookeeper/logs \
     ZOOKEEPER_DATA_FOLDER=/var/lib/zookeeper \
-    ZOOKEEPER_LOGS_FOLDER=/var/lib/zk-transaction-logs \
+    ZOOKEEPER_LOGS_FOLDER=/var/lib/zookeeper-logs \
     ZOOKEEPER_SSL_FOLDER=/var/lib/zookeeper-ssl \
-    ZOOKEEPER_RELEASE=3.5.2-alpha \
+    ZOOKEEPER_RELEASE=3.5.3-beta \
+    ZOOKEEPER_CONFIGURATION_SCRIPT_URL= \
     ZOOKEEPER_CONFIGURATION_URL="" \
     ZOOKEEPER_PORT_ADDRESS="" \
     ZOOKEEPER_PORT=2181 \
@@ -63,10 +64,27 @@ ENV ZOOKEEPER_HOME=/usr/local/zookeeper \
 
 USER root
 
-#support for Hadoop 2.6.0
-RUN curl -s http://www-eu.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_RELEASE/zookeeper-$ZOOKEEPER_RELEASE.tar.gz | tar -xz -C /usr/local/
-RUN cd /usr/local && ln -s zookeeper-$ZOOKEEPER_RELEASE zookeeper
-RUN mkdir -p $ZOOKEEPER_DATA_FOLDER && mkdir -p ZOOKEEPER_LOGS_FOLDER && mkdir -p $ZOOKEEPER_SSL_FOLDER && mkdir -p $ZOOKEEPER_HOME/conf && mkdir -p $ZOOKEEPER_HOME/logs
+RUN apt-get update \
+    && apt-get -y upgrade \
+    && apt-get -y install apt-utils \
+    && apt-get -y install software-properties-common \
+    && apt-get -y install wget curl htop git vim net-tools \
+    && add-apt-repository -y -u ppa:webupd8team/java \
+    && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections \
+    && echo -e "\n" | apt-get -y install oracle-java8-installer oracle-java8-set-default \
+    && apt-get -y autoremove \
+    && apt-get -y clean \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /root
+
+RUN curl -sSL http://www-eu.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_RELEASE/zookeeper-$ZOOKEEPER_RELEASE.tar.gz | tar -x -C /usr/local/ \
+    && cd /usr/local && ln -s zookeeper-* zookeeper \
+    && mkdir -p $ZOOKEEPER_DATA_FOLDER \
+    && mkdir -p ZOOKEEPER_LOGS_FOLDER \
+    && mkdir -p $ZOOKEEPER_SSL_FOLDER \
+    && mkdir -p $ZOOKEEPER_HOME/conf \
+    && mkdir -p $ZOOKEEPER_HOME/logs
 
 #ADD zookeeper.cfg $ZOOKEEPER_HOME/conf/zoo.cfg
 ADD zookeeper.cfg.standalone.template $ZOOKEEPER_HOME/conf/zoo.cfg.standalone.template
@@ -74,12 +92,16 @@ ADD zookeeper.cfg.replica.template $ZOOKEEPER_HOME/conf/zoo.cfg.replica.template
 
 # update boot script
 COPY docker-start-zookeeper.sh /usr/local/bin/docker-start-zookeeper
-RUN chmod +x /usr/local/bin/docker-start-zookeeper
+COPY start-zookeeper.sh /usr/local/bin/start-zookeeper
+COPY status-zookeeper.sh /usr/local/bin/status-zookeeper
+COPY stop-zookeeper.sh /usr/local/bin/stop-zookeeper
+COPY configure-zookeeper.sh /usr/local/bin/configure-zookeeper
+RUN chmod +x /usr/local/bin/*zookeeper
 
 WORKDIR /usr/local/zookeeper
 
 EXPOSE 8080 2181 2182
 
-VOLUME ["/var/lib/zookeeper", "/var/lib/zk-transaction-logs", "/var/lib/zookeeper-ssl"]
+VOLUME ["/var/lib/zookeeper", "/var/lib/zookeeper-logs", "/var/lib/zookeeper-ssl"]
 
 ENTRYPOINT ["docker-start-zookeeper"]
