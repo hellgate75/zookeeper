@@ -33,10 +33,7 @@ else
      rm -f /root/setup-zookeeper.sh
    fi
  fi
- if ! [[ -e /root/.zookeeper_configured ]]; then
    configure-zookeeper
-   touch /root/.zookeeper_configured
- fi
 fi
 
 cd /usr/lib/zookeeper
