@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/hellgate75/zookeeper/raw/master/images/zookeeper-logo.png" width="241"  height="110" /></p>
+<p align="center"><img src="https://github.com/hellgate75/zookeeper/raw/master/images/zookeper-logo.png" width="241"  height="110" /></p>
 
 # Apache™ ZooKeeper Docker image
 
