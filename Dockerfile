@@ -74,7 +74,8 @@ RUN apt-get update \
     && echo -e "\n" | apt-get -y install oracle-java8-installer oracle-java8-set-default \
     && apt-get -y autoremove \
     && apt-get -y clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && echo "head-zookeeper" >> /root/.bashrc
 
 WORKDIR /root
 
@@ -95,6 +96,7 @@ COPY docker-start-zookeeper.sh /usr/local/bin/docker-start-zookeeper
 COPY start-zookeeper.sh /usr/local/bin/start-zookeeper
 COPY status-zookeeper.sh /usr/local/bin/status-zookeeper
 COPY stop-zookeeper.sh /usr/local/bin/stop-zookeeper
+COPY head-zookeeper.sh /usr/local/bin/head-zookeeper
 COPY configure-zookeeper.sh /usr/local/bin/configure-zookeeper
 RUN chmod +x /usr/local/bin/*zookeeper
 

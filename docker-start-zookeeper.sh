@@ -19,6 +19,7 @@ if [[ -z "$ZOOKERPER_ACTIVE" ]]; then
   fi
 
   echo "Logging ZooKeeper ..."
+  head-zookeeper
   tail -f $ZOOKEEPER_HOME/logs/zookeeper--server-*.out
 
   echo -e "\nApache Zookeeper v. $ZOOKEEPER_RELEASE ports : \n"
@@ -42,6 +43,7 @@ then
   echo "Running Apache Zookeeper v. $ZOOKEEPER_RELEASE shell command : $* ..."
   /bin/bash -c "$*"
 else
+  head-zookeeper
   echo " Apache Zookeeper v. $ZOOKEEPER_RELEASE : Waiting forever ..."
   tail -f /dev/null
 fi
