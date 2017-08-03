@@ -153,3 +153,4 @@ if [[ "false" == "$CONFIGURATION" ]]; then
   echo "admin.commandURL=$ZK_ADMIN_SERVER_COMMAND_URL"  >>  $ZOOKEEPER_HOME/conf/zoo.cfg
 
 fi
+sed -i 's/.*=$/#&/g' $ZOOKEEPER_HOME/conf/zoo.cfg
