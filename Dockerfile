@@ -5,9 +5,9 @@ MAINTAINER Fabrizio Torelli <hellgate75@gmail.com>
 ARG DEBIAN_FRONTEND=noninteractive
 ARG RUNLEVEL=1
 
-ENV ZOOKEEPER_HOME=/usr/local/zookeeper \
-    ZOOKEEPER_PREFIX=/usr/local/zookeeper \
-    ZOO_LOG_DIR=/usr/local/zookeeper/logs \
+ENV ZOOKEEPER_HOME=/usr/lib/zookeeper \
+    ZOOKEEPER_PREFIX=/usr/lib/zookeeper \
+    ZOO_LOG_DIR=/usr/lib/zookeeper/logs \
     ZOOKEEPER_DATA_FOLDER=/var/lib/zookeeper \
     ZOOKEEPER_LOGS_FOLDER=/var/lib/zookeeper-logs \
     ZOOKEEPER_SSL_FOLDER=/var/lib/zookeeper-ssl \
@@ -59,7 +59,7 @@ ENV ZOOKEEPER_HOME=/usr/local/zookeeper \
     ZK_ADMIN_SERVER_PORT=8080 \
     ZK_ADMIN_SERVER_IDLE_TIMEOUT=30000 \
     ZK_ADMIN_SERVER_COMMAND_URL="/commands" \
-    PATH=$PATH:/usr/local/zookeeper/bin
+    PATH=$PATH:/usr/lib/zookeeper/bin
 
 
 USER root
@@ -79,8 +79,8 @@ RUN apt-get update \
 
 WORKDIR /root
 
-RUN curl -sSL http://www-eu.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_RELEASE/zookeeper-$ZOOKEEPER_RELEASE.tar.gz | tar -x -C /usr/local/ \
-    && cd /usr/local && ln -s zookeeper-* zookeeper \
+RUN curl -sSL http://www-eu.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_RELEASE/zookeeper-$ZOOKEEPER_RELEASE.tar.gz | tar -x -C /usr/lib/ \
+    && cd /usr/lib && ln -s zookeeper-* zookeeper \
     && mkdir -p $ZOOKEEPER_DATA_FOLDER \
     && mkdir -p ZOOKEEPER_LOGS_FOLDER \
     && mkdir -p $ZOOKEEPER_SSL_FOLDER \
