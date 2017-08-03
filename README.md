@@ -28,13 +28,13 @@ This docker image has been designed to be a test, development, integration, prod
 
 Here some information :
 
-Volumes : /var/lib/zookeeper, /var/lib/zk-transaction-logs, /var/lib/zookeeper-ssl
+Volumes : /var/lib/zookeeper, /var/lib/zookeeper-logs, /var/lib/zookeeper-ssl
 
 * `/var/lib/zookeeper` :
 
 Zookeeper Data folder.
 
-* `/var/lib/zk-transaction-logs` :
+* `/var/lib/zookeeper-logs` :
 
 Zookeeper transaction logs folder.
 
