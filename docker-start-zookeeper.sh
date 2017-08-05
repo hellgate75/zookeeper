@@ -1,5 +1,6 @@
-#!/bin/bash
-cd /usr/local/zookeeper
+#!/usr/bin/env bash
+
+cd $ZOOKEEPER_HOME
 
 ZOOKERPER_ACTIVE="$(ps -eaf | grep java | grep zookeeper)"
 
@@ -12,6 +13,8 @@ if [[ -z "$ZOOKERPER_ACTIVE" ]]; then
   fi
 
   start-zookeeper
+
+  import-data-zookeeper
 
   CMD=${1:-""}
   if [[ "$CMD" == "-s" ]]; then

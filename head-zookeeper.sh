@@ -26,5 +26,5 @@ echo "" \
 && echo "Zookeeper status : $FLAG_ZOOKEEPER" \
 && echo "" \
 && echo ""
-
+slep 2
 netstat -anp

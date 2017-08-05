@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 RUNNING="$(ps -eaf | grep java | grep zookeeper)"
 
@@ -27,6 +27,8 @@ if ! [[ -z "$ZOOKEEPER_CONFIGURATION_URL" ]]; then
   else
     echo "Problems downloading Apache ZooKeeper configuration from url : $ZOOKEEPER_CONFIGURATION_URL ..."
   fi
+  cp /root/.zookeeper/default-setenv-zookeeper.sh /usr/local/bin/setenv-zookeeper
+  chmod 777 /usr/local/bin/setenv-zookeeper
 else
  if ! [[ -z "$ZOOKEEPER_CONFIGURATION_SCRIPT_URL" ]]; then
    echo "Downloading Apache ZooKeeper configuration shell script from url : $ZOOKEEPER_CONFIGURATION_SCRIPT_URL ..."
@@ -34,10 +36,16 @@ else
    if [[ -e /root/setup-zookeeper.sh ]]; then
      echo "Applying Apache ZooKeeper downloaded shell script configuration ..."
      . /root/setup-zookeeper.sh
-     rm -f /root/setup-zookeeper.sh
+     mv /root/setup-zookeeper.sh /usr/local/bin/setenv-zookeeper
+     chmod 777 /usr/local/bin/setenv-zookeeper
    else
      echo "Problems downloading Apache ZooKeeper configuration shell script from url : $ZOOKEEPER_CONFIGURATION_SCRIPT_URL ..."
+     cp /root/.zookeeper/default-setenv-zookeeper.sh /usr/local/bin/setenv-zookeeper
+     chmod 777 /usr/local/bin/setenv-zookeeper
    fi
+ else
+   cp /root/.zookeeper/default-setenv-zookeeper.sh /usr/local/bin/setenv-zookeeper
+   chmod 777 /usr/local/bin/setenv-zookeeper
  fi
    configure-zookeeper
 fi

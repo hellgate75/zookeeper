@@ -57,8 +57,9 @@ DEFAULT ports :
 ### Docker Environment Variable ###
 
 Here Zookeeper configuration acceleration variables :
-* `ZOOKEEPER_CONFIGURATION_URL` : Url to zoo.cfg configuration file to be placed. Other single/replica node variables will be ignored.
-* `ZOOKEEPER_CONFIGURATION_SCRIPT_URL` : Url to bash script file used for Apache™ Zookeper system variables configuration.
+* `ZOOKEEPER_CONFIGURATION_URL` : Url to zoo.cfg configuration file to be placed. Other single/replica node variables will be ignored(see [sample file](https://github.com/hellgate75/zookeeper/tree/master/sample/zoo-standalone.cfg)]).
+* `ZOOKEEPER_CONFIGURATION_SCRIPT_URL` : Url to bash script file used for Apache™ Zookeper system variables configuration (see [sample script](https://github.com/hellgate75/zookeeper/tree/master/sample/zoo-standalone.bash)]).
+* `ZOOKEEPER_CONFIGURATION_DATA_TARGZ_URL` : Url to data compressed tar gz file format for Apache™ Zookeper configuration provisioning. Node path separator character is `.`, eg: for node with path `/myserver/myfunction`, file name will be `myserver.myfunction` and file content will represent node value (see [samples](https://github.com/hellgate75/zookeeper/tree/master/sample)]).
 
 For more information about values : [Apache™ Zookeeper Configuration](http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_configuration)
 
@@ -227,6 +228,14 @@ Get service action, after junk, should return data like :
 For more info refer to [Apache™ Zookeeper Started](http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html)
 
 
+### Custom commands
+
+In this image are provided following custom commands :
+
+* `get-node-zookeeper` : Retrieve Apache™ Zookeeper node value
+* `set-node-zookeeper` : Set Apache™ Zookeeper node value
+
+
 ### License ###
 
-[LGPL 3](/LICENSE)
+[LGPL 3](https://github.com/hellgate75/zookeeper/tree/master/LICENSE)

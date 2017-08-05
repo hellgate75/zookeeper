@@ -75,7 +75,8 @@ RUN apt-get update \
     && apt-get -y autoremove \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/* \
-    && echo "head-zookeeper" >> /root/.bashrc
+    && echo "head-zookeeper" >> /root/.bashrc \
+    && echo ". setenv-zookeeper" >> /root/.bashrc
 
 WORKDIR /root
 
@@ -85,7 +86,8 @@ RUN curl -sSL http://www-eu.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_RELEA
     && mkdir -p ZOOKEEPER_LOGS_FOLDER \
     && mkdir -p $ZOOKEEPER_SSL_FOLDER \
     && mkdir -p $ZOOKEEPER_HOME/conf \
-    && mkdir -p $ZOOKEEPER_HOME/logs
+    && mkdir -p $ZOOKEEPER_HOME/logs \
+    && mkdir -p /root/.zookeeper
 
 #ADD zookeeper.cfg $ZOOKEEPER_HOME/conf/zoo.cfg
 ADD zookeeper.cfg.standalone.template $ZOOKEEPER_HOME/conf/zoo.cfg.standalone.template
@@ -98,9 +100,13 @@ COPY status-zookeeper.sh /usr/local/bin/status-zookeeper
 COPY stop-zookeeper.sh /usr/local/bin/stop-zookeeper
 COPY head-zookeeper.sh /usr/local/bin/head-zookeeper
 COPY configure-zookeeper.sh /usr/local/bin/configure-zookeeper
+COPY load-zookeeper-data.sh /usr/local/bin/import-data-zookeeper
+COPY get-zookeeper-node.sh /usr/local/bin/get-node-zookeeper
+COPY set-zookeeper-node.sh /usr/local/bin/set-node-zookeeper
+COPY default-setenv-zookeeper.sh /root/.zookeeper/default-setenv-zookeeper.sh
 RUN chmod +x /usr/local/bin/*zookeeper
 
-WORKDIR /usr/local/zookeeper
+WORKDIR $ZOOKEEPER_HOME
 
 EXPOSE 8080 2181 2182
 
