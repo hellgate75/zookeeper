@@ -6,7 +6,7 @@ fi
 DATA="$(zkCli.sh get $1 | grep -vi java | grep -vi connect| grep -vi watcher| grep -vi exception)"
 CONNECT=""
 if ! [[ -z "$3" ]]; then
-  CONNECT="-server $3"
+  CONNECT=" -server $3"
 fi
 if [[ -z "$DATA" ]]; then
   zkCli.sh$CONNECT create "$1"

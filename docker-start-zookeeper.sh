@@ -13,7 +13,7 @@ if [[ -z "$ZOOKERPER_ACTIVE" ]]; then
   fi
 
   start-zookeeper
-
+  sleep 4
   import-data-zookeeper
 
   CMD=${1:-""}

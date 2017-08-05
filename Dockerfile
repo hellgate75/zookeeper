@@ -8,9 +8,9 @@ ARG RUNLEVEL=1
 ENV ZOOKEEPER_HOME=/usr/lib/zookeeper \
     ZOOKEEPER_PREFIX=/usr/lib/zookeeper \
     ZOO_LOG_DIR=/usr/lib/zookeeper/logs \
-    ZOOKEEPER_DATA_FOLDER=/var/lib/zookeeper \
-    ZOOKEEPER_LOGS_FOLDER=/var/lib/zookeeper-logs \
-    ZOOKEEPER_SSL_FOLDER=/var/lib/zookeeper-ssl \
+    ZOOKEEPER_DATA_FOLDER=/var/local/zookeeper \
+    ZOOKEEPER_LOGS_FOLDER=/var/local/zookeeper-logs \
+    ZOOKEEPER_SSL_FOLDER=/var/local/zookeeper-ssl \
     ZOOKEEPER_RELEASE=3.5.3-beta \
     ZOOKEEPER_CONFIGURATION_SCRIPT_URL= \
     ZOOKEEPER_CONFIGURATION_URL="" \
@@ -110,6 +110,6 @@ WORKDIR $ZOOKEEPER_HOME
 
 EXPOSE 8080 2181 2182
 
-VOLUME ["/var/lib/zookeeper", "/var/lib/zookeeper-logs", "/var/lib/zookeeper-ssl"]
+VOLUME ["/var/local/zookeeper", "/var/local/zookeeper-logs", "/var/local/zookeeper-ssl"]
 
 ENTRYPOINT ["docker-start-zookeeper"]
