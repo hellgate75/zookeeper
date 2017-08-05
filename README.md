@@ -58,8 +58,8 @@ DEFAULT ports :
 
 Here Zookeeper configuration acceleration variables :
 * `ZOOKEEPER_CONFIGURATION_URL` : Url to zoo.cfg configuration file to be placed. Other single/replica node variables will be ignored(see [sample file](https://github.com/hellgate75/zookeeper/tree/master/sample/zoo-standalone.cfg)]).
-* `ZOOKEEPER_CONFIGURATION_SCRIPT_URL` : Url to bash script file used for Apache™ Zookeper system variables configuration (see [sample script](https://github.com/hellgate75/zookeeper/tree/master/sample/zoo-standalone.bash)]).
-* `ZOOKEEPER_CONFIGURATION_DATA_TARGZ_URL` : Url to data compressed tar gz file format for Apache™ Zookeper configuration provisioning. Node path separator character is `.`, eg: for node with path `/myserver/myfunction`, file name will be `myserver.myfunction` and file content will represent node value (see [samples](https://github.com/hellgate75/zookeeper/tree/master/sample)]).
+* `ZOOKEEPER_CONFIGURATION_SCRIPT_URL` : Url to bash script file used for Apache™ Zookeper system variables configuration (see [sample script](https://github.com/hellgate75/zookeeper/tree/master/sample/zoo-standalone.sh)]).
+* `ZOOKEEPER_CONFIGURATION_DATA_TARGZ_URL` : Url to data compressed tar gz file format for Apache™ Zookeper configuration provisioning. Node path separator character is `.`, eg: for node with path `/myserver/myfunction`, file name will be `myserver.myfunction` and file content will represent node value (see [samples](https://github.com/hellgate75/zookeeper/tree/master/sample)).
 
 For more information about values : [Apache™ Zookeeper Configuration](http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_configuration)
 
