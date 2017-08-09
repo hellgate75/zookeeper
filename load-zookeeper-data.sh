@@ -1,5 +1,9 @@
 #!/bin/bash
 
+source /root/.zookeeper/.env
+
+source /usr/local/bin/setenv-zookeeper
+
 function download_file() {
   if [[ -z "$(echo $2|grep -i 'https://')" ]]; then
     curl -L -o $1 $2

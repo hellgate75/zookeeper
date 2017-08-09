@@ -2,6 +2,8 @@
 
 RUNNING="$(ps -eaf | grep java | grep zookeeper)"
 
+source /root/.zookeeper/.env
+
 if ! [[ -z "$RUNNING" ]]; then
   echo "Apache Zookeeper already running!!"
   exit 0
@@ -50,10 +52,13 @@ else
    configure-zookeeper
 fi
 
+source /usr/local/bin/setenv-zookeeper
+
 cd $ZOOKEEPER_HOME
 
 if [[ -z "$RUNNING" ]]; then
   echo "Starting ZooKeeper ..."
   zkServer-initialize.sh --force
   zkEnv.sh && zkServer.sh start
+  tail -f /dev/null
 fi

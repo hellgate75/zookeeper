@@ -68,7 +68,7 @@ RUN apt-get update \
     && apt-get -y upgrade \
     && apt-get -y install apt-utils \
     && apt-get -y install software-properties-common \
-    && apt-get -y install wget curl htop git vim net-tools \
+    && apt-get -y install wget curl htop git vim net-tools inetutils-tools inetutils-ping \
     && add-apt-repository -y -u ppa:webupd8team/java \
     && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections \
     && echo -e "\n" | apt-get -y install oracle-java8-installer oracle-java8-set-default \
@@ -104,7 +104,14 @@ COPY load-zookeeper-data.sh /usr/local/bin/import-data-zookeeper
 COPY get-zookeeper-node.sh /usr/local/bin/get-node-zookeeper
 COPY set-zookeeper-node.sh /usr/local/bin/set-node-zookeeper
 COPY default-setenv-zookeeper.sh /root/.zookeeper/default-setenv-zookeeper.sh
-RUN chmod +x /usr/local/bin/*zookeeper
+COPY dump-env.sh /usr/local/bin/dump-env
+COPY init.zookeeper.sh /etc/init.d/zookeeper
+COPY default.zookeeper.sh /etc/default/zookeeper
+
+RUN chmod +x /usr/local/bin/*zookeeper \
+    && chmod +x /etc/init.d/zookeeper \
+    && chmod +x /etc/default/zookeeper \
+    && chmod +x /usr/local/bin/dump-env
 
 WORKDIR $ZOOKEEPER_HOME
 

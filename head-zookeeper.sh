@@ -25,6 +25,12 @@ FLAG_ZOOKEEPER="$(status-zookeeper)"
 echo "" \
 && echo "Zookeeper status : $FLAG_ZOOKEEPER" \
 && echo "" \
+&& echo "" \
+&& echo "Zookeeper is a service : service zookeeper help" \
+&& echo "                         For further available commands" \
 && echo ""
-slep 2
-netstat -anp
+if [[ "-s" != "$1" ]]; then
+  sleep 2
+  echo -e "\nApache Zookeeper v. $ZOOKEEPER_RELEASE ports : \n"
+  netstat -anp
+fi

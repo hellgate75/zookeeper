@@ -11,8 +11,8 @@ if [[ -z "$ZOOKERPER_ACTIVE" ]]; then
     configure-zookeeper
     touch /root/.zookeeper_configured
   fi
-
-  start-zookeeper
+  dump-env
+  service zookeeper start
   sleep 4
   import-data-zookeeper
 
@@ -22,7 +22,7 @@ if [[ -z "$ZOOKERPER_ACTIVE" ]]; then
   fi
 
   echo "Logging ZooKeeper ..."
-  head-zookeeper
+  head-zookeeper -s
   tail -f $ZOOKEEPER_HOME/logs/zookeeper--server-*.out
 
   echo -e "\nApache Zookeeper v. $ZOOKEEPER_RELEASE ports : \n"
