@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/hellgate75/zookeeper/raw/master/images/zookeper-logo.png" width="227"  height="395" /></p>
+<p align="center"><img src="https://github.com/hellgate75/zookeeper/raw/3.5.2-alpha/images/zookeper-logo.png" width="227"  height="395" /></p>
 
 # Apache™ ZooKeeper Docker image
 
@@ -57,9 +57,9 @@ DEFAULT ports :
 ### Docker Environment Variable ###
 
 Here Zookeeper configuration acceleration variables :
-* `ZOOKEEPER_CONFIGURATION_URL` : Url to zoo.cfg configuration file to be placed. Other single/replica node variables will be ignored(see [sample file](https://github.com/hellgate75/zookeeper/tree/master/sample/zoo-standalone.cfg)]).
-* `ZOOKEEPER_CONFIGURATION_SCRIPT_URL` : Url to bash script file used for Apache™ Zookeper system variables configuration (see [sample script](https://github.com/hellgate75/zookeeper/tree/master/sample/zoo-standalone.sh)]).
-* `ZOOKEEPER_CONFIGURATION_DATA_TARGZ_URL` : Url to data compressed tar gz file format for Apache™ Zookeper configuration provisioning. Node path separator character is `.`, eg: for node with path `/myserver/myfunction`, file name will be `myserver.myfunction` and file content will represent node value (see [samples](https://github.com/hellgate75/zookeeper/tree/master/sample)).
+* `ZOOKEEPER_CONFIGURATION_URL` : Url to zoo.cfg configuration file to be placed. Other single/replica node variables will be ignored(see [sample file](https://github.com/hellgate75/zookeeper/tree/3.5.2-alpha/sample/zoo-standalone.cfg)]).
+* `ZOOKEEPER_CONFIGURATION_SCRIPT_URL` : Url to bash script file used for Apache™ Zookeper system variables configuration (see [sample script](https://github.com/hellgate75/zookeeper/tree/3.5.2-alpha/sample/zoo-standalone.sh)]).
+* `ZOOKEEPER_CONFIGURATION_DATA_TARGZ_URL` : Url to data compressed tar gz file format for Apache™ Zookeper configuration provisioning. Node path separator character is `.`, eg: for node with path `/myserver/myfunction`, file name will be `myserver.myfunction` and file content will represent node value (see [samples](https://github.com/hellgate75/zookeeper/tree/3.5.2-alpha/sample)).
 
 For more information about values : [Apache™ Zookeeper Configuration](http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#sc_configuration)
 
@@ -155,7 +155,7 @@ For more information about values : [Apache™ Zookeeper Configuration](http://z
 Here a sample command to run Apache™ Zookeeper container:
 
 ```bash
-docker run -d -p 2181:2181 -p 2182:2182 -v my/data/dir:/var/lib/zookeeper my/trans/logs/dir:/var/lib/zk-transaction-logs --name my-zookeeper hellgate75/zookeeper:latest
+docker run -d -p 2181:2181 -p 2182:2182 -v my/data/dir:/var/lib/zookeeper my/trans/logs/dir:/var/lib/zk-transaction-logs --name my-zookeeper hellgate75/zookeeper:3.5.2-alpha
 ```
 
 
@@ -238,4 +238,4 @@ In this image are provided following custom commands :
 
 ### License ###
 
-[LGPL 3](https://github.com/hellgate75/zookeeper/tree/master/LICENSE)
+[LGPL 3](https://github.com/hellgate75/zookeeper/tree/3.5.2-alpha/LICENSE)

@@ -11,7 +11,7 @@ ENV ZOOKEEPER_HOME=/usr/lib/zookeeper \
     ZOOKEEPER_DATA_FOLDER=/var/local/zookeeper \
     ZOOKEEPER_LOGS_FOLDER=/var/local/zookeeper-logs \
     ZOOKEEPER_SSL_FOLDER=/var/local/zookeeper-ssl \
-    ZOOKEEPER_RELEASE=3.5.3-beta \
+    ZOOKEEPER_RELEASE=3.5.2-alpha \
     ZOOKEEPER_CONFIGURATION_SCRIPT_URL= \
     ZOOKEEPER_CONFIGURATION_URL="" \
     ZOOKEEPER_PORT_ADDRESS="" \
@@ -80,7 +80,7 @@ RUN apt-get update \
 
 WORKDIR /root
 
-RUN curl -sSL http://www-eu.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_RELEASE/zookeeper-$ZOOKEEPER_RELEASE.tar.gz | tar -x -C /usr/lib/ \
+RUN curl -s http://www-eu.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_RELEASE/zookeeper-$ZOOKEEPER_RELEASE.tar.gz | tar -xz -C /usr/lib/ \
     && cd /usr/lib && ln -s zookeeper-* zookeeper \
     && mkdir -p $ZOOKEEPER_DATA_FOLDER \
     && mkdir -p ZOOKEEPER_LOGS_FOLDER \
