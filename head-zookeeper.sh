@@ -30,7 +30,6 @@ echo "" \
 && echo "                         For further available commands" \
 && echo ""
 if [[ "-s" != "$1" ]]; then
-  sleep 2
   echo -e "\nApache Zookeeper v. $ZOOKEEPER_RELEASE ports : \n"
   netstat -anp
 fi

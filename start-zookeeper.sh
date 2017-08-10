@@ -58,7 +58,6 @@ cd $ZOOKEEPER_HOME
 
 if [[ -z "$RUNNING" ]]; then
   echo "Starting ZooKeeper ..."
-  zkServer-initialize.sh --force
   zkEnv.sh && zkServer.sh start
   tail -f /dev/null
 fi
