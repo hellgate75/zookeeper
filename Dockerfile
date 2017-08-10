@@ -103,7 +103,7 @@ COPY configure-zookeeper.sh /usr/local/bin/configure-zookeeper
 COPY load-zookeeper-data.sh /usr/local/bin/import-data-zookeeper
 COPY get-zookeeper-node.sh /usr/local/bin/get-node-zookeeper
 COPY set-zookeeper-node.sh /usr/local/bin/set-node-zookeeper
-COPY default-setenv-zookeeper.sh /usr/local/bin/setenv-zookeeper.sh
+COPY default-setenv-zookeeper.sh /usr/local/bin/setenv-zookeeper
 COPY default-setenv-zookeeper.sh /root/.zookeeper/default-setenv-zookeeper.sh
 COPY dump-env.sh /usr/local/bin/dump-env
 COPY init.zookeeper.sh /etc/init.d/zookeeper
